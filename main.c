@@ -11,6 +11,26 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+t_list	*ft_last(t_list **lst)
+{
+	t_list *list = NULL;
+
+	list = *lst;
+	while (list->next)
+		list = list->next;
+	return list;
+
+}
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list *tmp;
+	
+	tmp = *lst;
+	while (tmp->next->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new;
+	new->next = NULL;
+}
 
 void	sa(t_list *node)
 {
@@ -29,7 +49,7 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 
 t_list	*ft_lstnew(int content)
 {
-	t_list *node;
+	t_list *node = NULL;
 
 	node= malloc(sizeof(t_list*));
 	node->content = content;
@@ -48,26 +68,23 @@ int	main(int ac, char **av)
 {
 	t_list *head = NULL;
 	t_list *tmp = NULL;
+	t_list *ptr = NULL;
 	int		i;
 	
 	i = 1;
 	head = malloc(sizeof(t_list*));
-/*	tmp = head;
+	tmp = head;
 	while (av[i])
 	{
-		head->content = atoi(av[i]);
-		head->next = malloc(sizeof(t_list*));
-		head = head->next;
+		tmp->content = atoi(av[i]);
+		tmp->next = malloc(sizeof(t_list);
+		tmp = tmp->next;
 		i++;
 	}
-	head->next = NULL;
-	head = tmp;*/
-	//printls(head);
-	while (av[i])
-	{
-		ft_lstadd_front(&head,ft_lstnew(atoi(av[i])));
-		i++;
-	}
+	tmp = NULL;
+	//ptr = ft_last(&head);
+	//printf("%s\n"), tmp->next;
+	//ft_lstadd_back(&head, ft_lstnew(9));
 	//sa(head);
 	printls(head);
 }
