@@ -125,15 +125,15 @@ void	rr(t_list **lst)
 	
 }
 
-void	three_nums(int *nb, t_list **lst)
+void	three_nums(t_list **lst)
 {
 	int	a;
 	int	b;
 	int	c;
 
-	a = nb[0];
-	b = nb[1];
-	c = nb[2];
+	a = (*lst)->content;
+	b = (*lst)->next->content;
+	c = (*lst)->next->next->content;
 	//printf("a is : %d, b is : %d, c is : %d\n", a, b, c);
 	if (a < b && b < c && a < c)
 		return;
@@ -195,6 +195,175 @@ void	check_double(t_list *lst, int *nums, int nb)
 
 }
 
+int	find_snumi(int *nums, int ac)
+{
+	int	tmp = nums[0];
+	int	i = 0;
+	int	c = 0;
+
+	while (i < ac)
+	{
+		if (tmp <= nums[i])
+		{
+			tmp = nums[i];
+			c++;
+		}
+		i++;
+	}
+	if (c  == ac)
+		return(-1);
+	i = 0;
+	tmp = nums[i];
+	while (i < ac)
+	{
+		if(tmp > nums[i])
+			tmp = nums[i];
+		i++;
+	}
+	i = 0;
+	while (i < ac)
+	{
+		if ( tmp == nums[i])
+			break;
+		i++;
+	}
+	return (i);
+}
+void	for_nums(int *nums, t_list **st_a, t_list **st_b)
+{
+	int	i = find_snumi(nums, 4);
+
+	if (i == -1)
+		return;	
+	else if (i == 0)
+	{
+		pb(st_a, st_b);
+		write(1, "pb\n", 3);
+		three_nums(st_a);
+		pa(st_a, st_b);
+		write(1, "pa\n", 3);
+	}
+	else if (i == 1)
+	{
+		ra(st_a);
+		write(1, "ra\n", 3);
+		pb(st_a, st_b);
+		write(1, "pb\n", 3);
+		three_nums(st_a);
+		pa(st_a, st_b);
+		write(1, "pa\n", 3);
+	}
+	else if (i == 2)
+	{
+		ra(st_a);
+		write(1, "ra\n", 3);
+		ra(st_a);
+		write(1, "ra\n", 3);
+		pb(st_a, st_b);
+		write(1, "pb\n", 3);
+		three_nums(st_a);
+		pa(st_a, st_b);
+		write(1, "pa\n", 3);
+	}
+	else if (i == 3)
+	{
+		rr(st_a);
+		write(1, "rra\n", 4);
+		pb(st_a, st_b);
+		write(1, "pb\n", 3);
+		three_nums(st_a);
+		pa(st_a, st_b);
+		write(1, "pa\n", 3);
+	}
+}
+
+int	*fix_nums(int *nums, int i)
+{
+	int c = 0;
+	int d = 0;
+	int *nums1 = NULL;
+
+	nums1 = malloc(sizeof(int) * 4);
+	while(c < i)
+	{
+		nums1[c] = nums[d];
+		c++;
+		d++;
+	}
+	d++;
+	while (c < 5)
+	{
+		nums1[c] = nums[d];
+		c++;
+		d++;
+	}
+	return (nums1);
+}
+void	five_nums(int *nums, t_list **st_a, t_list **st_b)
+{
+		int	i = find_snumi(nums, 5);
+
+	if (i == 0)
+	{
+		pb(st_a, st_b);
+		write(1, "pb\n", 3);
+		for_nums(&nums[1], st_a, st_b);
+		pa(st_a, st_b);
+		write(1, "pa\n", 3);
+	}
+	else if (i == 1)
+	{
+		ra(st_a);
+		write(1, "ra\n", 3);
+		pb(st_a, st_b);
+		write(1, "pb\n", 3);
+		rr(st_a);
+		write(1, "rra\n", 4);
+		for_nums(fix_nums(nums, i), st_a, st_b);
+		pa(st_a, st_b);
+		write(1, "pa\n", 3);
+	}
+	else if (i == 2)
+	{
+		ra(st_a);
+		write(1, "ra\n", 3);
+		ra(st_a);
+		write(1, "ra\n", 3);
+		pb(st_a, st_b);
+		write(1, "pb\n", 3);
+		rr(st_a);
+		write(1, "rra\n", 4);
+		for_nums(fix_nums(nums, i), st_a, st_b);
+		pa(st_a, st_b);
+		write(1, "pa\n", 3);
+	}
+	else if (i == 3)
+	{
+		rr(st_a);
+		write(1, "rra\n", 4);
+		rr(st_a);
+		write(1, "rra\n", 4);
+		pb(st_a, st_b);
+		write(1, "pb\n", 3);
+		ra(st_a);
+		write(1, "ra\n", 3);
+		for_nums(fix_nums(nums, i), st_a, st_b);
+		pa(st_a, st_b);
+		write(1, "pa\n", 3);
+	}
+	else if (i == 4)
+	{
+		rr(st_a);
+		write(1, "rra\n", 4);
+		pb(st_a, st_b);
+		write(1, "pb\n", 3);
+		for_nums(fix_nums(nums, i), st_a, st_b);
+		pa(st_a, st_b);
+		write(1, "pa\n", 3);
+	}
+	
+}
+
 int     main(int ac, char **av)
 {
 	t_list	*stack_b = NULL;
@@ -204,7 +373,6 @@ int     main(int ac, char **av)
 	int	j;
 
 	stack_b = malloc(sizeof(t_list));
-	stack_b->content = 7;
         i = 1;
 	j = 0;
 	nb = malloc(sizeof(int) * (ac - 1));
@@ -223,9 +391,15 @@ int     main(int ac, char **av)
 	//s(&head);
 	//ra(&head);
 	if (ac == 4)
-		three_nums(nb, &head);
+		three_nums(&head);
+	if (ac == 5)
+		for_nums(nb, &head, &stack_b);
+	if (ac == 6)
+		five_nums(nb, &head, &stack_b);
 		
         printls(head);
+	
+	//printf("%d //\n", find_snumi(nb,(ac - 1)));
 	nb = NULL;
 	free(nb);
 }
