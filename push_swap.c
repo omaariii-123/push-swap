@@ -6,7 +6,7 @@
 /*   By: yomari <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 10:54:30 by yomari            #+#    #+#             */
-/*   Updated: 2022/08/22 10:55:14 by yomari           ###   ########.fr       */
+/*   Updated: 2022/11/08 19:06:43 by yomari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -364,6 +364,107 @@ void	five_nums(int *nums, t_list **st_a, t_list **st_b)
 	
 }
 
+void swap(int *x, int *y)
+{
+	int tmp;
+
+	tmp = *x;
+	*x = *y;
+	*y = tmp;
+}
+int	indexes(int n, int *nm, int s)
+{
+	int	i;
+
+	i = 0;
+	while (s)
+	{
+		if (nm[i] == n)
+			return(i);
+		i++;
+		s--;
+	}
+	return(i);
+}
+void	b_sort(int	sz, int *nm)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < sz - 1)
+	{
+		j = 0;
+		while (j < sz - i -1)
+		{
+			if (nm[j] > nm [j + 1])
+				swap(&nm[j], &nm[j + 1]);
+			j++;
+		}
+		i++;
+	}
+}
+void	convert_nums(t_list **lst, int *nm, int sz)
+{
+	t_list *tmp;
+
+	tmp = *lst;
+
+	while (tmp)
+	{
+		tmp->content = indexes(tmp->content, nm, sz);
+		tmp = tmp->next;
+	}
+}
+int	how_many_bits(int n)
+{
+	int	i;
+
+	i = 0;
+	while (n >> i )
+		i++;
+	return(i);
+}
+void	radix_sort(t_list **stack_a, t_list **stack_b, int sz)
+{
+	int	bits;
+	int	tmp;
+	int	i;
+	int	nb;
+
+	i = 0;
+	bits = how_many_bits(sz);
+	while (i < bits)
+	{
+		tmp = sz;
+		while (sz)
+		{
+			//printls(*stack_a);
+			nb = (*stack_a)->content;
+			if(((nb >> i) & 1) == 1)
+			{
+				ra(stack_a);
+				write(1, "ra\n", 3);
+			}
+			else
+			{
+				pb(stack_a, stack_b);
+				write(1, "pb\n", 3);
+			}
+			sz--;
+		}
+		//printls(*stack_b);
+		while(*stack_b != NULL)
+		{
+			pa(stack_a, stack_b);
+			write(1, "pa\n", 3);
+		}
+		write(1, "wah\n", 4);
+		i++;
+	}
+
+}
+
 int     main(int ac, char **av)
 {
 	t_list	*stack_b = NULL;
@@ -385,7 +486,7 @@ int     main(int ac, char **av)
 		j++;
         }
 	check_double(head,nb , (ac - 1));
-        //ptr = ft_last(&head);
+	        //ptr = ft_last(&head);
        // ft_lstadd_back(&head, ft_lstnew(9));
 //       pa(&head, &stack_b);
 	//s(&head);
@@ -396,8 +497,15 @@ int     main(int ac, char **av)
 		for_nums(nb, &head, &stack_b);
 	if (ac == 6)
 		five_nums(nb, &head, &stack_b);
+	if (ac > 6)
+	{
+		b_sort(j, nb);
+		convert_nums(&head, nb, j);
+       printls(head);
+		radix_sort(&head, &stack_b, ac - 1);
+	}
 		
-        printls(head);
+     //  printls(head);
 	
 	//printf("%d //\n", find_snumi(nb,(ac - 1)));
 	nb = NULL;
