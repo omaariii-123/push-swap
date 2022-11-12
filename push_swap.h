@@ -19,5 +19,35 @@ typedef struct t_list{
 	struct	t_list	*next;
 
 }t_list;
+typedef struct info
+{
+	int zero;
+	int one;
+}info;
 
+t_list *ft_lstnew(int content);
+int ft_lstsize(t_list *list);
+t_list *delete_fnode(t_list *list);
+t_list *ft_last(t_list *lst);
+void	ft_lstadd_front(t_list **lst, t_list *nnew);
+void	ft_lstadd_back(t_list **lst, t_list *nnew);
+void	printls(t_list *node);
+void	swap(int *x, int *y);
+int	indexes(int n, int *nm, int s);
+void	b_sort(int sz, int *nm);
+void	convert_nums(t_list **lst, int *nm, int sz, info *inf);
+int	how_many_bits(int n);
+void	ft_putchar(char c);
+void	ft_putnbr(int nb);
+int	ft_atoi(char *str);
+void	check_double(t_list *lst, int *nums, int nb);
+void	rr(t_list **lst);
+void	s(t_list **lst, char *str);
+void	pa(t_list **stack_a, t_list **stack_b);
+void	pb(t_list **stack_a, t_list **stack_b);
+void	ra(t_list **lst);
+void	two_nums(t_list **lst);
+void	three_nums(t_list **lst);
+void	four_nums(t_list **st_a, t_list **st_b, info inf);
+void	five_nums(t_list **st_a, t_list **st_b, info inf);
 #endif
