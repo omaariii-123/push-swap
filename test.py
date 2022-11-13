@@ -15,10 +15,13 @@ def test(start, end):
 def main():
 
     if (len(sys.argv) != 3):
+        print("hello")
         return (-42)
     start = int(sys.argv[1])
     end = int(sys.argv[2])
+    print(start, end)
 
     for i in range(0, 100):
         test(start, end)
 
+main()

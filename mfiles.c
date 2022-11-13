@@ -1,13 +1,14 @@
 #include"push_swap.h"
 
-void swap(int *x, int *y)
+void	swap(int *x, int *y)
 {
-	int tmp;
+	int	tmp;
 
 	tmp = *x;
 	*x = *y;
 	*y = tmp;
 }
+
 int	indexes(int n, int *nm, int s)
 {
 	int	i;
@@ -16,13 +17,14 @@ int	indexes(int n, int *nm, int s)
 	while (s)
 	{
 		if (nm[i] == n)
-			return(i);
+			return (i);
 		i++;
 		s--;
 	}
-	return(i);
+	return (i);
 }
-void	b_sort(int	sz, int *nm)
+
+void	b_sort(int sz, int *nm)
 {
 	int	i;
 	int	j;
@@ -31,26 +33,27 @@ void	b_sort(int	sz, int *nm)
 	while (i < sz - 1)
 	{
 		j = 0;
-		while (j < sz  - i -1)
+		while (j < sz - i -1)
 		{
 			if (nm[j] > nm [j + 1])
 				swap(&nm[j], &nm[j + 1]);
-			j++;
+		j++;
 		}
 		i++;
 	}
 }
-void	convert_nums(t_list **lst, int *nm, int sz, info *inf)
+
+void	convert_nums(t_list **lst, int *nm, int sz, t_info *inf)
 {
-	t_list *tmp;
-	int	i = 0;
+	t_list	*tmp;
+	int		i;
 
+	i = 0;
 	tmp = *lst;
-
 	while (tmp)
 	{
 		tmp->content = indexes(tmp->content, nm, sz);
-		if(tmp->content == 0)
+		if (tmp->content == 0)
 			inf->zero = i;
 		else if (tmp->content == 1)
 			inf->one = i;
@@ -58,13 +61,13 @@ void	convert_nums(t_list **lst, int *nm, int sz, info *inf)
 		i++;
 	}
 }
+
 int	how_many_bits(int n)
 {
 	int	i;
 
 	i = 0;
-	while (n >> i )
+	while (n >> i)
 		i++;
-	return(i);
+	return (i);
 }
-

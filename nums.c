@@ -10,7 +10,7 @@ void	two_nums(t_list **lst)
 	if (a > b)
 		s(lst, "sa\n");
 	else
-		return;
+		return ;
 }
 
 void	three_nums(t_list **lst)
@@ -23,8 +23,8 @@ void	three_nums(t_list **lst)
 	b = (*lst)->next->content;
 	c = (*lst)->next->next->content;
 	if (a < b && b < c && a < c)
-		return;
-	else if ( a < b && b > c && a < c)
+		return ;
+	else if (a < b && b > c && a < c)
 	{
 		s(lst, "sa\n");
 		ra(lst);
@@ -41,7 +41,8 @@ void	three_nums(t_list **lst)
 	else if (a > b && b < c && a < c)
 		s(lst, "sa\n");
 }
-void	four_nums(t_list **st_a, t_list **st_b, info inf)
+
+void	four_nums(t_list **st_a, t_list **st_b, t_info inf)
 {
 	while ((*st_a)->content != 0)
 	{
@@ -54,7 +55,8 @@ void	four_nums(t_list **st_a, t_list **st_b, info inf)
 	three_nums(st_a);
 	pa(st_a, st_b);
 }
-void	five_nums(t_list **st_a, t_list **st_b, info inf)
+
+void	five_nums(t_list **st_a, t_list **st_b, t_info inf)
 {
 	while ((*st_a)->content != 1)
 	{
@@ -69,3 +71,12 @@ void	five_nums(t_list **st_a, t_list **st_b, info inf)
 	s(st_a, "sa\n");
 }
 
+void	ft_lstadd_back(t_list **lst, t_list *nnew)
+{
+	if (!*lst)
+	{
+		*lst = nnew;
+		return ;
+	}
+	ft_last(*lst)->next = nnew;
+}

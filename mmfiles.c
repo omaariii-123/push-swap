@@ -7,7 +7,7 @@ void	ft_putchar(char c)
 
 void	ft_putnbr(int nb)
 {
-	int num;
+	int	num;
 
 	num = nb;
 	if (num < 0)
@@ -24,36 +24,28 @@ void	ft_putnbr(int nb)
 
 int	ft_atoi(char *str)
 {
-	int neg;
-	int num;
-	int i;
-	int	j;
+	int	neg;
+	int	num;
+	int	i;
 
 	i = 0;
-	neg = 1;
+	neg = 0;
 	num = 0;
-	j = 0;
-
-	while (str[j])
-		j++;
+	while (str[neg])
+		neg++;
 	while (str[i] <= ' ')
 		i++;
-	if (i == j)
+	if (i == neg)
 		exit(1);
-		
+	neg = 1;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-		{
 			neg *= -1;
-		}
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
-	{
-		num = num * 10 + (str[i] - 48);
-		i++;
-	}
+		num = num * 10 + (str[i++] - 48);
 	return (num * neg);
 }
 
@@ -63,12 +55,12 @@ void	check_double(t_list *lst, int *nums, int nb)
 	int	n;
 	int	c;
 
-	while(lst)
+	while (lst)
 	{
 		n = nb;
 		c = 0;
 		i = 0;
-		while(n)
+		while (n)
 		{
 			if (lst->content == nums[i])
 				c++;
@@ -79,15 +71,16 @@ void	check_double(t_list *lst, int *nums, int nb)
 			exit(0);
 		lst = lst->next;
 	}
-
 }
+
 void	rr(t_list **lst)
 {
-	t_list *tmp = NULL;
-	int	i;
+	t_list	*tmp;
+	int		i;
 
+	tmp = NULL;
 	tmp = *lst;
-	while(tmp->next->next)
+	while (tmp->next->next)
 		tmp = tmp->next;
 	i = tmp->next->content;
 	free(tmp->next);
@@ -95,5 +88,3 @@ void	rr(t_list **lst)
 	ft_lstadd_front(lst, ft_lstnew(i));
 	write(1, "rra\n", 4);
 }
-
-

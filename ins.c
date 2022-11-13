@@ -2,9 +2,10 @@
 
 void	s(t_list **lst, char *str)
 {
-	t_list *new = NULL;
-	int	tmp;
+	int		tmp;
+	t_list	*new;
 
+	new = NULL;
 	tmp = (*lst)->content;
 	*lst = delete_fnode(*lst);
 	new = ft_lstnew(tmp);
@@ -27,6 +28,7 @@ void	pa(t_list **stack_a, t_list **stack_b)
 {
 	p(stack_a, stack_b, "pa\n");
 }
+
 void	pb(t_list **stack_a, t_list **stack_b)
 {
 	p(stack_b, stack_a, "pb\n");
@@ -35,9 +37,9 @@ void	pb(t_list **stack_a, t_list **stack_b)
 void	ra(t_list **lst)
 {
 	int	tmp;
+
 	tmp = (*lst)->content;
 	*lst = delete_fnode(*lst);
 	ft_lstadd_back(lst, ft_lstnew(tmp));
 	write(1, "ra\n", 3);
 }
-

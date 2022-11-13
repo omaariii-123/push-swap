@@ -15,28 +15,29 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void	func(int ac, char **av, t_list **head, info *inf)
+void	func(int ac, char **av, t_list **head, t_info *inf)
 {
 	int	i;
 	int	j;
-	int	*nb; 
+	int	*nb;
 
 	i = 1;
 	j = 0;
 	nb = malloc(sizeof(int) * (ac - 1));
 	while (av[i])
-		{
-			nb[j] = ft_atoi(av[i]);
-			ft_lstadd_back(head, ft_lstnew(nb[j]));
-			i++;
-			j++;
-		}
-	check_double(*head,nb , (ac - 1));
+	{
+		nb[j] = ft_atoi(av[i]);
+		ft_lstadd_back(head, ft_lstnew(nb[j]));
+		i++;
+		j++;
+	}
+	check_double(*head, nb, (ac - 1));
 	b_sort(j, nb);
 	convert_nums(head, nb, j, inf);
 	nb = NULL;
 	free(nb);
 }
+
 void	radix_sort(t_list **stack_a, t_list **stack_b, int sz)
 {
 	int	bits;
@@ -52,26 +53,25 @@ void	radix_sort(t_list **stack_a, t_list **stack_b, int sz)
 		while (tmp--)
 		{
 			nb = (*stack_a)->content;
-			if(((nb >> i) & 1) == 1)
+			if (((nb >> i) & 1) == 1)
 				ra(stack_a);
 			else
 				pb(stack_a, stack_b);
 		}
-		while(*stack_b != NULL)
+		while (*stack_b != NULL)
 			pa(stack_a, stack_b);
 		i++;
 	}
 }
 
-
-int     main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_list	*stack_b;
 	t_list	*head;
-	info 	inf;
+	t_info	inf;
 
 	head = NULL;
-	stack_b = malloc(sizeof(t_list));
+	stack_b = malloc(sizeof (t_list));
 	stack_b = NULL;
 	func(ac, av, &head, &inf);
 	if (ac == 3)

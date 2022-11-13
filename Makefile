@@ -2,7 +2,7 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = file.c  files.c  ins.c   mfiles.c  mmfiles.c  nums.c  push_swap.c
+SRCS = files.c  ins.c   mfiles.c  mmfiles.c  nums.c  push_swap.c
 
 OBJS = $(SRCS:.c=.o)
 
