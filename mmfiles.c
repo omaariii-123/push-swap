@@ -35,8 +35,8 @@ int	ft_atoi(char *str)
 		neg++;
 	while (str[i] <= ' ')
 		i++;
-	if (i == neg)
-		exit(1);
+//	if (i == neg)
+//		p_error();
 	neg = 1;
 	if (str[i] == '-' || str[i] == '+')
 	{

@@ -70,6 +70,7 @@ int	main(int ac, char **av)
 	t_list	*head;
 	t_info	inf;
 
+	check_error(av);
 	head = NULL;
 	stack_b = malloc(sizeof (t_list));
 	stack_b = NULL;
