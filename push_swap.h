@@ -6,7 +6,7 @@
 /*   By: yomari <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 04:08:31 by yomari            #+#    #+#             */
-/*   Updated: 2022/08/23 23:37:32 by yomari           ###   ########.fr       */
+/*   Updated: 2022/11/14 22:13:50 by yomari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include<unistd.h>
 
 typedef struct t_list{
-	int		content;
+	int				content;
 	struct t_list	*next;
 
 }t_list;
@@ -53,6 +53,6 @@ void	two_nums(t_list **lst);
 void	three_nums(t_list **lst);
 void	four_nums(t_list **st_a, t_list **st_b, t_info inf);
 void	five_nums(t_list **st_a, t_list **st_b, t_info inf);
-void	check_error(char **av);
+void	check_error(char **av, int negation);
 void	p_error(void);
 #endif

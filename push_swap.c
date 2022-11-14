@@ -6,7 +6,7 @@
 /*   By: yomari <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 10:54:30 by yomari            #+#    #+#             */
-/*   Updated: 2022/11/11 13:25:48 by yomari           ###   ########.fr       */
+/*   Updated: 2022/11/14 22:44:17 by yomari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	func(int ac, char **av, t_list **head, t_info *inf)
 	check_double(*head, nb, (ac - 1));
 	b_sort(j, nb);
 	convert_nums(head, nb, j, inf);
-	nb = NULL;
 	free(nb);
 }
 
@@ -69,10 +68,11 @@ int	main(int ac, char **av)
 	t_list	*stack_b;
 	t_list	*head;
 	t_info	inf;
+	int		negation;
 
-	check_error(av);
+	negation = 1;
+	check_error(av, negation);
 	head = NULL;
-	stack_b = malloc(sizeof (t_list));
 	stack_b = NULL;
 	func(ac, av, &head, &inf);
 	if (ac == 3)
