@@ -25,18 +25,13 @@ void	ft_putnbr(int nb)
 int	ft_atoi(char *str)
 {
 	int	neg;
-	int	num;
+	long	num;
 	int	i;
 
 	i = 0;
-	neg = 0;
 	num = 0;
-	while (str[neg])
-		neg++;
 	while (str[i] <= ' ')
 		i++;
-//	if (i == neg)
-//		p_error();
 	neg = 1;
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -46,6 +41,10 @@ int	ft_atoi(char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 		num = num * 10 + (str[i++] - 48);
+	if (num > 2147483647 && neg > 0)
+		p_error();
+	else if ((num * neg) < -2147483648)
+		p_error();
 	return (num * neg);
 }
 
@@ -68,7 +67,7 @@ void	check_double(t_list *lst, int *nums, int nb)
 			i++;
 		}
 		if (c > 1)
-			exit(0);
+			p_error();
 		lst = lst->next;
 	}
 }
