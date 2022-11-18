@@ -53,6 +53,6 @@ void	two_nums(t_list **lst);
 void	three_nums(t_list **lst);
 void	four_nums(t_list **st_a, t_list **st_b, t_info inf);
 void	five_nums(t_list **st_a, t_list **st_b, t_info inf);
-void	check_error(char **av, int negation);
+void	check_error(char **av, int negation, int i);
 void	p_error(void);
 #endif

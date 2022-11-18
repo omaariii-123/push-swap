@@ -25,20 +25,21 @@ int	ft_is_digit(char c)
 	return (0);
 }
 
-void	check_error(char **av, int negation)
+void	check_error(char **av, int negation, int i)
 {
-	int		i;
 	int		j;
 
-	i = 1;
 	while (av[i])
 	{
 		negation = 1;
 		j = 0;
 		while (av[i][j])
 		{
-			if (ft_is_digit(av[i][j++]) == 1)
+			if (ft_is_digit(av[i][j]) == 1)
+			{
 				negation = 0;
+				j++;
+			}
 			else if (negation && (av[i][j] == 45 || av[i][j] == 43))
 			{
 				negation = 0;

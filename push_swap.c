@@ -15,6 +15,25 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+void	check_sorted(int *nums, int size)
+{
+	int	i;
+
+	i = 0;
+	while (size)
+	{
+		if (nums[i] < nums[i + 1])
+		{
+			size--;
+			i++;
+		}
+		else
+			break;
+	}
+	if(size == 0)
+		exit(0);
+}
+
 void	func(int ac, char **av, t_list **head, t_info *inf)
 {
 	int	i;
@@ -32,6 +51,7 @@ void	func(int ac, char **av, t_list **head, t_info *inf)
 		j++;
 	}
 	check_double(*head, nb, (ac - 1));
+	check_sorted(nb ,j - 1);
 	b_sort(j, nb);
 	convert_nums(head, nb, j, inf);
 	free(nb);
@@ -69,9 +89,11 @@ int	main(int ac, char **av)
 	t_list	*head;
 	t_info	inf;
 	int		negation;
+	int		i;
 
+	i = 1;
 	negation = 1;
-	check_error(av, negation);
+	check_error(av, negation, i);
 	head = NULL;
 	stack_b = NULL;
 	func(ac, av, &head, &inf);
